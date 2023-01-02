@@ -5,3 +5,6 @@ Run - `/compile-c --help` to bring up the help menu
 
 ## Credits
 Exclusivlely to google and all the sites reached through this medium e.g stackoverflow
+
+
+_Written by Evil Ghost_

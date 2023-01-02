@@ -1,0 +1,219 @@
+#!/bin/bash
+
+# A script to compile up to three C files with -Wall -Werror -Wextra -pedantic -std=gnu89 flags
+
+if [[ "$1" == "--help" || "$1" == "-h" ]]
+then
+	echo -e "\e[1;33mUsage:  \e[0m ./\e[1;32mcompile-c\e[0m [main_file_name](without extension) ... [extra_files](maximum two)"
+	echo -e "\e[1;33mExample:\e[0m ./\e[1;32mcompile-c\e[0m demo"
+	echo -e "         ./\e[1;32mcompile-c\e[0m demo function.c"
+	echo -e "         ./\e[1;32mcompile-c\e[0m demo _putchar.c function.c\n"
+	echo -e "Compiles 1 to 3 c files, if compilation successful an option is given to execute the compiled file"
+
+	echo -e "     -h, --help        Displays this help and exit"
+	echo -e "     \e[1;31mNote:\e[0m 'bash' \e[1;32mcompile-c\e[0m ... can also be used in place of './'"
+	exit 0
+fi
+
+echo -e "	\e[1;31m------------------------------------------------"
+echo "	|                                              |"
+echo "	|               C COMPILER SCRIPT              |"
+echo "	|             written by Evil Ghost            |"
+echo "	|               Github: Evil-Ghost             |"
+echo "	|                                              |"
+echo -e "	------------------------------------------------\e[0m"
+
+if [[ -e "$1.c" && -e "$1" ]]
+then
+	echo -en "\e[1;31mRemoving old file"
+	sleep .2
+	echo -n "."
+	sleep .2
+	echo -n "."
+	sleep .2
+	echo -n "."
+	sleep .2
+	echo -n "."
+	sleep .2
+	echo -e ".\e[0m"
+	sleep .4
+	rm -v $1
+	echo -e "\n"
+	sleep 1
+fi
+
+echo -n "Searching for file '$1.c' to be used for compilation"
+sleep .2
+echo -n "."
+sleep .2
+echo -n "."
+sleep .2
+echo -n "."
+sleep .2
+echo -n "."
+sleep .2
+echo "."
+sleep .4
+if [ -e "$1.c" ]
+then
+	echo -e "$1.c file \e[1;32mfound!\e[0m\n"
+	echo -n "Starting compilation"
+	sleep .2
+	echo -n "."
+	sleep .2
+	echo -n "."
+	sleep .2
+	echo -n "."
+	sleep .2
+	echo -n "."
+	sleep .2
+	echo "."
+	sleep .4
+
+	echo -e "___________________________\n"
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -n "."
+	sleep .1
+	echo -e " \e[1;32m100%\e[0m"
+	echo -e "___________________________\n"
+	sleep .5
+	echo "Checking for extra files"
+	if ! [[ -e "$2" || -e "$3" ]]
+	then
+		echo -e "No extra files found!\n"
+		echo -e "\e[1;31mWarning: \e[0mIf you added extra files to command and it displays this message\nnote that those extra files were not found in the present working directory\nor not found at all so the script will run using just the first file which\nwill produce an error if those extra files are needed for compilation.\n"
+	fi
+
+	if [[ -e "$2" && -e "$3" ]]
+	then
+		sleep .5
+		echo -en "\e[1;32mAdding extra files\e[0m '$2' \e[1;32mand\e[0m '$3'\e[1;32m"
+		sleep .2
+		echo -n "."
+		sleep .2
+		echo -n "."
+		sleep .2
+		echo -n "."
+		sleep .2
+		echo -n "."
+		sleep .2
+		echo -e ".\e[0m"
+		sleep .4
+		echo -e "Extra files added!\n"
+
+		gcc -Wall -Werror -Wextra -pedantic -std=gnu89 "$2" "$3" "$1.c" -o "$1"
+	elif [ -e "$2" ]
+	then
+		sleep .5
+		echo -en "\e[1;32mAdding extra file\e[0m '$2'\e[1;32m"
+		sleep .2
+		echo -n "."
+		sleep .2
+		echo -n "."
+		sleep .2
+		echo -n "."
+		sleep .2
+		echo -n "."
+		sleep .2
+		echo -e ".\e[0m"
+		sleep .4
+		echo -e "Extra file added!\n"
+
+		gcc -Wall -Werror -Wextra -pedantic -std=gnu89 "$2" "$1.c" -o "$1"
+	else
+		gcc -Wall -Werror -Wextra -pedantic -std=gnu89 "$1.c" -o "$1"
+	fi
+
+	if [ -e "$1" ]
+	then
+		echo -e "Compilation \e[1;32msuccessful!!!\e[0m\n"
+		sleep .4
+		echo "Do you want to execute file y/n/yes/no/Y/N?"
+		read choice
+		if [[ $choice == "y" || $choice == "yes" || $choice == "Y" ]]
+		then
+			echo -en "\e[1;32mExecuting file"
+			sleep .2
+			echo -n "."
+			sleep .2
+			echo -n "."
+			sleep .2
+			echo -n "."
+			sleep .2
+			echo -n "."
+			sleep .2
+			echo -e ".\e[0m"
+			sleep .4
+			echo -e "_________________________________________________\n"
+			sleep 1
+			./$1
+		else
+			echo -en "\e[1;31mExiting\e[0m without execution"
+			sleep .2
+			echo -n "."
+			sleep .2
+			echo -n "."
+			sleep .2
+			echo -n "."
+			sleep .2
+			echo -n "."
+			sleep .2
+			echo -e ".\e[0m"
+			exit 1
+		fi
+	else
+		echo -e "\e[1;31mError\e[0m in compilation, please read gcc \e[1;31merror\e[0m"
+	fi
+else
+	if [[ $1 == *".c" ]]
+	then
+		echo -e "\e[1;31mTry again!\e[0m"
+		echo -e "\e[1;31mDo not add\e[0m '.c' \e[1;31mafter name of file\e[0m\n"
+		./compile-c --help
+	else
+		echo -e "\e[1;31mFile not found!\e[0m"
+		echo -e "\e[1;31mSorry $1.c does not exist! \e[0m\n"
+		./compile-c --help
+	fi
+fi
