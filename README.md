@@ -6,7 +6,7 @@ Run - `./compile-c --help` to bring up the help menu
 ## Usage
 Clone this repo into your machine to start using this script.
 
-Run `./compile.c --help` or `bash compile-c` to display help page on how to use the script
+Run `./compile.c --help` or `bash compile-c -h` to display help page on how to use the script
 ## Credits
 Exclusivlely to google and all the sites reached through this medium e.g stackoverflow
 
