@@ -171,6 +171,7 @@ then
 		sleep .4
 		echo "Do you want to execute file y/n/yes/no/Y/N?"
 		read choice
+
 		if [[ $choice == "y" || $choice == "yes" || $choice == "Y" ]]
 		then
 			echo -en "\e[1;32mExecuting file"
@@ -188,7 +189,8 @@ then
 			echo -e "_________________________________________________\n"
 			sleep 1
 			./$1
-		else
+		elif [[ $choice == "n" || $choice == "no" || $choice == "N" ]]
+		then
 			echo -en "\e[1;31mExiting\e[0m without execution"
 			sleep .2
 			echo -n "."
@@ -200,7 +202,7 @@ then
 			echo -n "."
 			sleep .2
 			echo -e ".\e[0m"
-			exit 1
+			exit 0
 		fi
 	else
 		echo -e "\e[1;31mError\e[0m in compilation, please read gcc \e[1;31merror\e[0m"
